@@ -2,16 +2,7 @@
 $password_length = $_GET["password"] ?? "";
 
 
-function randomPassword($password_length)
-{
-    $charapter = 'abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ1234567890';
-    $charapterLength = strlen($charapter) - 1;
-    for ($i = 0; $i < $password_length; $i++) {
-        $n = rand(0, $charapterLength);
-        $pass[] = $charapter[$n];
-    }
-    return implode($pass);
-}
+include __DIR__ . "/partials/function.php";
 
 if ($password_length === "") {
     $password_generated = "";
@@ -43,7 +34,7 @@ if ($password_length === "") {
                 <button class="btn btn-danger" type="reset">Resetta</button>
             </label>
         </form>
-        <h3 class="pt-5">la tua password è: <?php echo $password_generated ?></h3>
+        <h3 class="pt-5">La tua password è: <?php echo $password_generated ?></h3>
         <div class="alert <?php echo $password_length !== "" ? "alert-success" : "alert-danger" ?>">
             <?php if ($password_length === "") {
                 echo "inserisci la lunghezza della password";
