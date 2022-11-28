@@ -1,5 +1,7 @@
 <?php
+session_start();
 $password_length = $_GET["password"] ?? "";
+
 
 
 include __DIR__ . "/partials/function.php";
@@ -9,6 +11,8 @@ if ($password_length === "") {
 } else {
     $password_generated = randomPassword($password_length);
 }
+
+$_SESSION['password'] = $password_generated;
 ?>
 
 <!DOCTYPE html>
@@ -19,7 +23,7 @@ if ($password_length === "") {
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-rbsA2VBKQhggwzxH7pPCaAqO46MgnOM80zW1RWuH61DGLwZJEdK2Kadq2F9CUG65" crossorigin="anonymous">
-    <title>Document</title>
+    <title>Password Generator</title>
 </head>
 
 <body>
@@ -31,10 +35,9 @@ if ($password_length === "") {
                 <span class="pe-4">Lunghezza della password: </span>
                 <input type="text" id="password" name="password">
                 <button class="btn btn-primary" type="submit">Invia</button>
-                <button class="btn btn-danger" type="reset">Resetta</button>
             </label>
         </form>
-        <h3 class="pt-5">La tua password è: <?php echo $password_generated ?></h3>
+        <a href="password.php">Scopri la tua Password</a>
         <div class="alert <?php echo $password_length !== "" ? "alert-success" : "alert-danger" ?>">
             <?php if ($password_length === "") {
                 echo "inserisci la lunghezza della password";
