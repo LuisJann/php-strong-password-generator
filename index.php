@@ -14,7 +14,7 @@ function randomPassword($password_length)
 }
 
 if ($password_length === "") {
-    $password_generated = "inserisci la lunghezza della password";
+    $password_generated = "";
 } else {
     $password_generated = randomPassword($password_length);
 }
@@ -37,18 +37,17 @@ if ($password_length === "") {
         <p></p>
         <form action="index.php" method="GET">
             <label for="password">
-                <span class="ps-4">Lunghezza della password</span>
+                <span class="pe-4">Lunghezza della password: </span>
                 <input type="text" id="password" name="password">
                 <button class="btn btn-primary" type="submit">Invia</button>
                 <button class="btn btn-danger" type="reset">Resetta</button>
             </label>
         </form>
-        <h3>la tua password è: <?php echo $password_generated ?></h3>
+        <h3 class="pt-5">la tua password è: <?php echo $password_generated ?></h3>
         <div class="alert <?php echo $password_length !== "" ? "alert-success" : "alert-danger" ?>">
             <?php if ($password_length === "") {
                 echo "inserisci la lunghezza della password";
             } else {
-                $password_generated = randomPassword($password_length);
                 echo "ecco la tua password";
             }
             ?>
